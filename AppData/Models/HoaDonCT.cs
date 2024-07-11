@@ -1,0 +1,17 @@
+﻿using AppData.Models;
+
+namespace AppData.Models
+{
+    public class HoaDonCT
+    {
+        public Guid Id { get; set; }
+        public Guid SanPhamId { get; set; }
+        public Guid HoaDonId { get; set; }
+        public int SoLuong { get; set; }
+        public decimal TongTien { get; set; }
+        public int status { get; set; }
+        public virtual SanPham SanPham { get; set; }
+        public virtual HoaDon HoaDon { get; set; }  
+
+    }
+}

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<AppData.Models.GioHangCT>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Giỏ hàng</h1>
+<li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-controller="HoaDon" asp-action="Index">Hóa đơn</a>
+</li>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.Label("Id hóa đơn")
+            </th>
+            <th>
+                @Html.Label("Id sản phẩm")
+            </th>
+            <th>
+                @Html.Label("Tên tài khoản")
+            </th>
+            @*<th>
+                @Html.Label("Ảnh sản phẩm")
+            </th>*@
+            <th>
+                @Html.Label("Số lượng")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SanPhamId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            @*<td>
+                    <img src="~/img/@item.SanPham.AnhSP "width="60px" />
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                    @Html.ActionLink("Delete", "Delete", new { id=item.Id})
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<form action="@Url.Action("AddHoaDon","GioHang")" method="post">
+
+    @* <input type="hidden" name="cartDetail" value="model" /> *@
+    <button type="submit" class="btn btn-primary">Thanh Toán</button>
+</form>

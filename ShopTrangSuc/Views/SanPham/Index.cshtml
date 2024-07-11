@@ -1,0 +1,97 @@
+﻿@model IEnumerable<AppData.Models.SanPham>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<span>@ViewData["login"]</span>
+<h1>Quản lý sản phẩm</h1>
+
+<p>
+    <a asp-action="Create">Thêm sản phẩm</a>
+    <a class="nav-link text-dark" asp-area="" asp-controller="TaiKhoan" asp-action="Index">Danh sách tài khoản</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.Label("Id sản phẩm")
+            </th>
+            <th>
+                @Html.Label("Ảnh sản phẩm")
+            </th>
+            <th>
+                @Html.Label("Tên sản phẩm")
+            </th>
+            <th>
+                @Html.Label("Mô tả")
+            </th>
+            <th>
+                @Html.Label("Chất liệu")
+            </th>
+            <th>
+                @Html.Label("Hãng cung cấp")
+            </th>
+            <th>
+                @Html.Label("Loại sản phẩm")
+            </th>
+            <th>
+                @Html.Label("Số lượng")
+            </th>
+            <th>
+                @Html.Label("Id sản phẩm")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @{
+                        var extension = System.IO.Path.GetExtension(item.AnhSP); // Lấy đuôi ảnh
+                    }
+                    @if (@extension.Contains(extension))
+                    {
+                        <img src="~/img/@item.AnhSP" height="200px">
+                    }
+                    else
+                    {
+                        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.facebook.com%2Finternetexplorerbeta%2Fposts%2Fanh-li%25C3%25AAm-gi%25C3%25A0nh-cup-v%25C3%25A0ng-th%25E1%25BB%2583-hi%25E1%25BB%2587n-%25C4%2591%25E1%25BA%25B3ng-c%25E1%25BA%25A5p-out-tr%25C3%25ACnh-to%25C3%25A0n-b%25E1%25BB%2599-c%25C3%25A1c-%25C4%2591%25E1%25BB%2591i-th%25E1%25BB%25A7-%25C4%2591%25E1%25BA%25BFn-t%25E1%25BB%25AB-n%2F728945255938708%2F&psig=AOvVaw2HlyEieUFs1K1YDTZcAllt&ust=1711695350707000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCKCm15ywloUDFQAAAAAdAAAAABAE">
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenSP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MoTa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GiaSP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChatLieu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HangCungCap)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoaiSP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuong)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new {id=item.Id})
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-controller="TaiKhoan" asp-action="LogOut">Đăng xuất</a>
+</li>
